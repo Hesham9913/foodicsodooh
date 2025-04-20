@@ -1,0 +1,22 @@
+name: Receive Foodics Webhook
+
+on:
+  repository_dispatch:
+
+jobs:
+  run_webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run webhook script
+        run: python main.py
